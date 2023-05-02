@@ -1,0 +1,33 @@
+paths:
+  /users/:
+    get:
+      tags:
+        - User
+      summary: Access to unsecured resource
+      security: []  # No security
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/User' 
+definitions:
+  User:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          id:
+            type: number
+          username:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
