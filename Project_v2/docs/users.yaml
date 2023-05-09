@@ -3,7 +3,7 @@ paths:
     get:
       tags:
         - User
-      summary: Access to unsecured resource
+      summary: Retrieve users
       security: []  # No security
       produces:
       - application/json
@@ -16,8 +16,118 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/users' 
-definitions:
+    post:
+      tags:
+      - User
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/users'
+          application/xml:
+            schema:
+              $ref: '#/definitions/users'
+      responses:
+        "200":
+          description: Create a User model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/users'
+            application/xml:
+              schema:
+                $ref: '#/definitions/users'
+  /users/{id}:
+    get:
+      tags:
+      - User
+      summary: Ritrieve User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Retrieve User id 1
+            value: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/users'
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    put:
+      tags:
+      - User
+      summary: Update User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Update User id 1
+            value: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/users'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: User PUT success
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    delete:
+      tags:
+      - User
+      summary: Delete User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Delete User id 1
+            value: 1
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: id not found
 
+definitions:
  users:
     type: object
     properties:

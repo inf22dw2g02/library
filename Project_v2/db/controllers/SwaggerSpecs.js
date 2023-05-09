@@ -9,7 +9,7 @@ const swaggerDefinition = {
       description: "Rest API",
       contact: { name: "Your name" },
     },
-    servers: [ {url: "http://localhost/:8080"},],
+    servers: [ {url: "http://localhost:8080"},],
     components: {
       securitySchemes: {
         oAuthSample: { 
