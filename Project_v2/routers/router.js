@@ -20,12 +20,17 @@ router.post('/users', async (req, res) => {
 });
 
 
+
 const auth = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
     res.redirect("/auth/google");
 }
+
+app.get('/protected', auth, function (req, res) {
+    res.sendFile(__dirname + "/public/protected.html");
+});
 
 app.get("/login", function (req, res) {
     res.sendFile(__dirname + "/public/login.html");
