@@ -9,18 +9,26 @@ const swaggerDefinition = {
       description: "Rest API",
       contact: { name: "Your name" },
     },
-    servers: [ {url: "http://localhost/:" + config.PORT,},],
+    servers: [ {url: "http://localhost/:8080"},],
     components: {
       securitySchemes: {
-        basicAuth: { type: "http", scheme: "basic", },
+        oAuthSample: { 
+            type: "oauth2",
+            flows: {
+              implicit: {
+                   authorizationUrl: "http://localhost:8080/auth/google/" 
+                        }
+            /* <---- arbitrary name */
+                    },
+        security: [{   OAuth2: [] }]
       },
     },
-    security: [{ basicAuth: [] }],
-  };
+  }};
 
 const options = {
     swaggerDefinition,
-    apis: ["./docs/*/.yaml"],
+    apis: ["./docs/**/*.yaml", "./router/router"],
+    
   };
 
 const swaggerSpec = swaggerJSDoc(options);

@@ -9,6 +9,27 @@ const router= express.Router();
 const db = require('./../models')
 
 
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Get a list of users
+ *     description: Returns a list of users
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
+
+
+
+
+
 // criar rota get
 router.get("/users", async (req, res) => {
         //Listar todos os usuarios do banco de dados
@@ -35,6 +56,7 @@ router.get("/users", async (req, res) => {
             });
         } 
 });
+
 
 
 // Tem que se criar a rota para registo
@@ -67,7 +89,7 @@ router.post("/users", async (req, res) => {
     }).catch(() => {
         // Pausar o processamento e retornar o erro
         return res.json({
-            mensagem: "Erro: Usuario nao registado com sucesso!"
+            mensagem: "Erro: Usuario nao registado com sucesso!"  
         });
     });    
 });

@@ -18,6 +18,8 @@ const swaggerSpec = require('./db/controllers/SwaggerSpecs');
 // Incluir o arquivo swaggerUi
 const swaggerUi = require('swagger-ui-express')
 
+
+
 //criar rotas
 app.use('/', users);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -53,13 +55,7 @@ app.use(passport.session());
 app.use(cors());
 app.use(router);
 
-const logado = (req, res, next) => {
-    if (req.use) {
-        next();
-    } else {
-        res.sendStatus(401);
-    }
-};
+
 
 
 
@@ -67,4 +63,5 @@ const logado = (req, res, next) => {
 app.listen(8080, ()=> {
     console.log("Acesse a rota http://localhost:8080/auth/google para efetuar o login!");
     console.log("Servidor iniciado na porta 8080: http://localhost:8080");
+    console.log("Servidor iniciado na porta 8080: http://localhost:8080/docs");
 });

@@ -4,8 +4,16 @@ paths:
       tags:
         - Secured
       summary: Access to a secured resource
+      components:
+        securitySchemes:
+          oAuthSample:  # <---- arbitrary name
+            type: oauth2
+            description: This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)
+            flows:
+              implicit: # <---- OAuth flow(authorizationCode, implicit, password or clientCredentials)
+                authorizationUrl: http://localhost:8080/auth/google/callback
       security: 
-        - basicAuth: []
+        - oAuthSample:
       produces:
         - text/plain
       responses:
