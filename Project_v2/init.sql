@@ -1,5 +1,6 @@
 -- Create the database
-CREATE DATABASE IF NOT EXISTS project_v2DB;
+DROP SCHEMA IF EXISTS `project_v2DB`;
+create schema project_v2DB;
 
 -- Switch to the database
 -- USE project_v2DB;
@@ -16,4 +17,4 @@ CREATE DATABASE IF NOT EXISTS project_v2DB;
 --   ('John Doe', 'john@example.com'),
 --   ('Jane Smith', 'jane@example.com');
 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';
+-- GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';

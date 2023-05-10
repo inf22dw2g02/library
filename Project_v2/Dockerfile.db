@@ -1,12 +1,19 @@
 # Use an official MySQL 8.0 image as the base
 
+# Use an official MySQL 8.0 image as the base image
 FROM mysql:8.0
 
-# Set a default value for the environment variable
-ARG ENV_FILE= .env
+# Set the root password for MySQL (replace 'your_password' with your desired password)
+ENV MYSQL_ROOT_PASSWORD=password
 
-# Copy the .env file to the container
-COPY $ENV_FILE /app/.env
+# Remove the --initialize-insecure option
+CMD ["mysqld"]
 
-# Copy the SQL initialization script to the container
+# Create a new database (replace 'your_database' with your desired database name)
+ENV MYSQL_DATABASE=project_v2DB
+
+# Copy the SQL script to initialize the database (optional)
 COPY init.sql /docker-entrypoint-initdb.d/
+
+# Expose the default MySQL port
+EXPOSE 3306

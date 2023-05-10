@@ -34,7 +34,7 @@ Manipular variaveis de ambiente
 Sequelize <command>
 
 Commands:
-  ### sequelize db:migrate                        Run pending migrations
+  ### npx sequelize db:migrate                        Run pending migrations
 
   ### sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
 
