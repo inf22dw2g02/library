@@ -6,73 +6,38 @@ const express = require('express');
 const router= express.Router();
 
 // Incluir o arquivo que possui a conexao com a base de dados
-const db = require('./../models')
-
-
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Get a list of users
- *     description: Returns a list of users
- *     responses:
- *       200:
- *         description: A list of users
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/User'
- */
-
-
-
+const db = require('./../models');
+const users = require('../models/users');
+const { where } = require('sequelize');
 
 
 // criar rota get
 router.get("/users", async (req, res) => {
-        //Listar todos os usuarios do banco de dados
-        const users = await db.Users.findAll({
+    //Listar todos os usuarios do banco de dados
+    const users = await db.Users.findAll({
 
-            //Indicar quais colunas Listar
-            attributes: ['id', 'name', 'email'],
+        //Indicar quais colunas Listar
+        attributes: ['id', 'name', 'email'],
 
-            //Ordenar os registos pela coluna id na forna decrescente
-            order:[['id', 'DESC' ]] 
+        //Ordenar os registos pela coluna id na forna decrescente
+        order:[['id', 'DESC' ]] 
+    });
+
+    // Acessa o IF se encontrar o registo no banco de dados
+    if (users){
+        // Pausar o processamento e retornar os dados em formato de objecto
+        return res.json(users);
+
+    }else{
+        // Pausar o processamento e retornar o erro
+        return res.status(400).json({
+            mensagem: "Erro: Nenhum usuario encontrado!"
         });
-
-        // Acessa o IF se encontrar o registo no banco de dados
-        if (users){
-            // Pausar o processamento e retornar os dados em formato de objecto
-            return res.json({
-                users
-            });
-
-        }else{
-            // Pausar o processamento e retornar o erro
-            return res.status(400).json({
-                mensagem: "Erro: Nenhum usuario encontrado!"
-            });
-        } 
+    } 
 });
 
 
-
-// Tem que se criar a rota para registo
-// Endereco para acessar atraves da aplicacao externa http://localhost:8080/users
-/*
-A aplicacao externa deve indicar que esta enviando em formato objeto
-para isso vamos a header e colocamos:
-Content-Type: application/json
-
-De seguida vamos ao body colocamos em raw depois em formato json
-// Dados em formato do objecto
-{
-    "name": "Bruno",
-    "email" "bruno@project.com"
-}
-*/
+// criar rota post
 router.post("/users", async (req, res) => {
 
     //RECEBER OS DADOS ENVIADOS NO CORPO DA REQUISICAO
@@ -93,5 +58,57 @@ router.post("/users", async (req, res) => {
         });
     });    
 });
+
+// criar rota get by id
+router.get("/users/:id", async (req, res) => {
+    const {id} = req.params;
+
+    const user = await db.Users.findOne({
+        attributes: ['id', 'name', 'email'],
+
+        where: {id},
+    })
+
+
+    if (user) {
+        return res.json(user);
+
+    }else{
+        return res.status(404).json({ error: 'User not found' });
+    }
+})
+
+// criar a rota put (atualizar o usuario)  
+router.put('/users/:id', async (req, res) => {
+    const {id} = req.params;
+    var  { name, email} = req.body;
+    await db.Users.update({name: name, email: email}, {where:{id}})
+    const user = await db.Users.findOne({where: {id}})
+    .then(()=>{
+        return res.json({error: 'User has been updated'}, users);
+    }).catch(()=>{
+        return res.status(404).json({error: 'User has not been updated'});
+    })
+    
+});
+  
+
+router.delete('/users/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      await db.Users.destroy({
+        where: { id }
+      });
+      res.status(200).json({ message: 'User has been deleted' });
+    } catch (error) {
+      res.status(404).json({ error: 'User not found' });
+    }
+});
+  
+  
+  
+  
+
 
 module.exports = router;

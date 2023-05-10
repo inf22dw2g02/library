@@ -20,6 +20,48 @@ router.post('/users', async (req, res) => {
 });
 
 
+router.get('/users/{id}', async (req, res) => {
+    const { id } = req.body;
+    console.log(id)
+    const user = await User.findByPk();
+    res.json(user);
+  
+    // if (!user) {
+    //   return res.status(404).json({ error: 'User not found' });
+    // }
+  
+    // res.json(user);
+});
+  
+router.put('/users/{id}', async (req, res) => {
+    const { id } = req.body.id;
+    const { name, email } = req.body;
+    const user = await User.findByPk(id);
+  
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+  
+    user.name = name;
+    user.email = email;
+    await user.save();
+  
+    res.json(user);
+ });
+  
+router.delete('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+  
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+  
+    await user.destroy();
+  
+    res.status(204).send();
+  });  
+
 const auth = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
