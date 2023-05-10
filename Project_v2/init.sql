@@ -15,3 +15,5 @@ CREATE DATABASE IF NOT EXISTS project_v2DB;
 -- INSERT INTO users (name, email) VALUES
 --   ('John Doe', 'john@example.com'),
 --   ('Jane Smith', 'jane@example.com');
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';
