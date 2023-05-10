@@ -5,7 +5,7 @@ paths:
         - User
       summary: Retrieve users
       security: 
-             - googleAuth: ['read', 'write'] # Oauth 2
+             - googleAuth: ['read'] # Oauth 2
       produces:
         - application/json
       responses:
@@ -17,10 +17,14 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/users"
+        "401":
+          description: Unauthorized
     post:
       tags:
         - User
       summary: Create User
+      security:
+          - googleAuth: ['write'] # Oauth 2
       requestBody:
         content:
           application/json:
@@ -39,6 +43,8 @@ paths:
             application/xml:
               schema:
                 $ref: "#/definitions/users"
+        "401":
+          description: Unauthorized
   /users/{id}:
     get:
       tags:

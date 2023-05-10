@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=${DB_BASE}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_DIALECT=${DB_DIALECT}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
