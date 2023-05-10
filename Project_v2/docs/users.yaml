@@ -4,9 +4,10 @@ paths:
       tags:
         - User
       summary: Retrieve users
-      security: []  # No security
+      security: 
+             - googleAuth: ['read', 'write'] # Oauth 2
       produces:
-      - application/json
+        - application/json
       responses:
         200:
           description: Success Message
@@ -15,82 +16,82 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/definitions/users' 
+                  $ref: "#/definitions/users"
     post:
       tags:
-      - User
+        - User
       summary: Create User
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/definitions/users'
+              $ref: "#/definitions/users"
           application/xml:
             schema:
-              $ref: '#/definitions/users'
+              $ref: "#/definitions/users"
       responses:
         "200":
           description: Create a User model instance
           content:
             application/json:
               schema:
-                $ref: '#/definitions/users'
+                $ref: "#/definitions/users"
             application/xml:
               schema:
-                $ref: '#/definitions/users'
+                $ref: "#/definitions/users"
   /users/{id}:
     get:
       tags:
-      - User
-      summary: Ritrieve User
+        - User
+      summary: Retrieve User
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Retrieve User id 1
-            value: 1
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve User id 1
+              value: 1
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/definitions/users'
+                $ref: "#/definitions/users"
         "400":
           description: Bad request
         "404":
           description: id not found
     put:
       tags:
-      - User
+        - User
       summary: Update User
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Update User id 1
-            value: 1
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update User id 1
+              value: 1
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/definitions/users'
+              $ref: "#/definitions/users"
         required: true
       responses:
         "200":
@@ -106,28 +107,28 @@ paths:
           description: id not found
     delete:
       tags:
-      - User
+        - User
       summary: Delete User
       parameters:
-      - name: id
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Delete User id 1
-            value: 1
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete User id 1
+              value: 1
       responses:
         "204":
           description: No content
         "404":
           description: id not found
 definitions:
- users:
+  users:
     type: object
     properties:
       users:

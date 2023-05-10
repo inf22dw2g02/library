@@ -20,6 +20,7 @@ router.post('/users', async (req, res) => {
 });
 
 
+
 router.get('/users/{id}', async (req, res) => {
     const { id } = req.body;
     console.log(id)
@@ -68,6 +69,10 @@ const auth = function (req, res, next) {
     }
     res.redirect("/auth/google");
 }
+
+app.get('/protected', auth, function (req, res) {
+    res.sendFile(__dirname + "/public/protected.html");
+});
 
 app.get("/login", function (req, res) {
     res.sendFile(__dirname + "/public/login.html");
