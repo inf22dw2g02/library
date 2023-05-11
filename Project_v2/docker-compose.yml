@@ -7,8 +7,7 @@ services:
     ports:
       - '3306:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: project_v2DB
+      MYSQL_PASSWORD: password
     volumes:
       - project_v2DB-mysql-data:/var/lib/mysql
     networks:
@@ -27,15 +26,26 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_DB: project_v2DB
-      GOOGLE_CLIENT_ID :  '89846874244-sr5mqqd452sdele5eroh90m8l1d49d6k.apps.googleusercontent.com'
+      GOOGLE_CLIENT_ID: '89846874244-sr5mqqd452sdele5eroh90m8l1d49d6k.apps.googleusercontent.com'
       GOOGLE_CLIENT_SECRET: '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'
     networks:
       - project_v2DB-network
+    
+    volumes:
+      - .:/app
 
-
+    #Executar migrations
+    command: 
+       sh -c 'if [ ! -f /app/.migration_executed ]; 
+       then echo "Running database migration..."; 
+       npx sequelize-cli db:migrate; 
+       touch /app/.migration_executed; 
+       fi; 
+       npm start'
+    
 
 volumes:
-    project_v2DB-mysql-data:
+  project_v2DB-mysql-data:
 
 networks:
-      project_v2DB-network:
+  project_v2DB-network:
