@@ -7,7 +7,7 @@ module.exports = {
     username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DB,
-    host: 'db',
+    host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT
   },
   test: {
@@ -18,10 +18,10 @@ module.exports = {
     dialect: process.env.DB_DIALECT
   },
   production: {
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DB,
-    host: process.env.MYSQL_HOST,
-    dialect: process.env.DB_DIALECT
+    username: process.env.DB_USER,
+    password: process.env.DB_USER,
+    database: process.env.DB_USER,
+    host: process.env.DB_USER,
+    dialect: process.env.DB_USER
   }
 };

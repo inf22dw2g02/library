@@ -1,0 +1,150 @@
+paths:
+  /livro:
+    get:
+      tags:
+        - Livro
+      summary: Retrieve Livro
+      security: 
+             - googleAuth: ['read'] # Oauth 2
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/definitions/livro"
+        "401":
+          description: Unauthorized
+    post:
+      tags:
+        - Livro
+      summary: Create Livro
+      security:
+          - googleAuth: ['write'] # Oauth 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/livro"
+          application/xml:
+            schema:
+              $ref: "#/definitions/livro"
+      responses:
+        "200":
+          description: Create a Livro model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/livro"
+            application/xml:
+              schema:
+                $ref: "#/definitions/livro"
+        "401":
+          description: Unauthorized
+  /livro/{id}:
+    get:
+      tags:
+        - Livro
+      summary: Retrieve Livro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve Livro id 1
+              value: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/livro"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    put:
+      tags:
+        - Livro
+      summary: Update Livro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update Livro id 1
+              value: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/livro"
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Livro apdated success
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    delete:
+      tags:
+        - Livro
+      summary: Delete Livro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete Livro id 1
+              value: 1
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: id not found
+definitions:
+  livro:
+    type: object
+    properties:
+      livro:
+        type: object
+        properties:
+          id:
+            type: integer
+          titulo:
+            type: string
+          autor:
+            type: string
+          anoPublicacao:
+            type: integer
