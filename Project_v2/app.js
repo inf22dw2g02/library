@@ -12,6 +12,7 @@ app.use(express.json());
 // Incluir controllers
 const users = require('./db/controllers/users');
 const livro = require('./db/controllers/livro');
+const autor = require('./db/controllers/autor');
 
 // Incluir o arquivo swagger
 const swaggerSpec = require('./db/controllers/SwaggerSpecs');
@@ -24,6 +25,7 @@ const swaggerUi = require('swagger-ui-express')
 //criar rotas
 app.use('/', users);
 app.use('/', livro);
+app.use('/', autor);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 

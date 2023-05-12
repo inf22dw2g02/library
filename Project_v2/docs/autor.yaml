@@ -1,0 +1,147 @@
+paths:
+  /autor:
+    get:
+      tags:
+        - Autor
+      summary: Retrieve Autor
+      security: 
+             - googleAuth: ['read'] # Oauth 2
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/definitions/autor"
+        "401":
+          description: Unauthorized
+    post:
+      tags:
+        - Autor
+      summary: Create Autor
+      security:
+          - googleAuth: ['write'] # Oauth 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/autor"
+          application/xml:
+            schema:
+              $ref: "#/definitions/autor"
+      responses:
+        "200":
+          description: Create a Autor model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/autor"
+            application/xml:
+              schema:
+                $ref: "#/definitions/autor"
+        "401":
+          description: Unauthorized
+  /autor/{id}:
+    get:
+      tags:
+        - Autor
+      summary: Retrieve Autor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve Autor id 1
+              value: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/autor"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    put:
+      tags:
+        - Autor
+      summary: Update Autor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update Autor id 1
+              value: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/autor"
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Autor apdated success
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    delete:
+      tags:
+        - Autor
+      summary: Delete Autor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete Autor id 1
+              value: 1
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: id not found
+definitions:
+  autor:
+    type: object
+    properties:
+      id:
+        type: integer
+      nome:
+        type: string
+      sobrenome:
+        type: string
+      nacionalidade:
+        type: string
