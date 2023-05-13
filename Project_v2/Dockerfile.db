@@ -10,10 +10,10 @@ ENV MYSQL_ROOT_PASSWORD=password
 CMD ["mysqld"]
 
 # Create a new database (replace 'your_database' with your desired database name)
-ENV MYSQL_DATABASE=project_v2DB
+# ENV MYSQL_DATABASE=project_v2DB
 
 # Copy the SQL script to initialize the database (optional)
-COPY init.sql /docker-entrypoint-initdb.d/
+# COPY init.sql /docker-entrypoint-initdb.d/
 
 # Expose the default MySQL port
 EXPOSE 3306

@@ -12,6 +12,8 @@ services:
       - project_v2DB-mysql-data:/var/lib/mysql
     networks:
       - project_v2DB-network
+   
+      
 
   api:
     build:
@@ -35,13 +37,14 @@ services:
       - .:/app
 
     #Executar migrations
-    command: 
-       sh -c 'if [ ! -f /app/.migration_executed ]; 
-       then echo "Running database migration..."; 
-       npx sequelize-cli db:migrate; 
-       touch /app/.migration_executed; 
-       fi; 
-       npm start'
+    command: sh -c 'if [ ! -f /app/.migration_executed ]; 
+             then echo "Create and Running database migration..."; 
+             sleep 10; 
+             npx sequelize-cli db:create; 
+             npx sequelize-cli db:migrate; 
+             touch /app/.migration_executed; 
+             fi && sleep 10 && npm start'
+
     
 
 volumes:
