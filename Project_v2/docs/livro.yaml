@@ -29,10 +29,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/livro"
+              $ref: "#/definitions/livroEx"
           application/xml:
             schema:
-              $ref: "#/definitions/livro"
+              $ref: "#/definitions/livroEx"
       responses:
         "200":
           description: Create a Livro model instance
@@ -97,7 +97,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/livro"
+              $ref: "#/definitions/livroEx"
         required: true
       responses:
         "200":
@@ -134,17 +134,23 @@ paths:
         "404":
           description: id not found
 definitions:
-  livro:
-    type: object
-    properties:
-      livro:
-        type: object
-        properties:
-          id:
-            type: integer
-          titulo:
-            type: string
-          autor:
-            type: string
-          anoPublicacao:
-            type: integer
+    livro:
+      type: object
+      properties:
+        id:
+          type: integer
+        titulo:
+          type: string
+        autor:
+          type: string
+        anoPublicacao:
+          type: integer
+    livroEx:
+      type: object
+      properties:
+        titulo:
+          type: string
+        autor:
+          type: string
+        anoPublicacao:
+          type: integer

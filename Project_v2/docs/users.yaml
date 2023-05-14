@@ -29,10 +29,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/users"
+              $ref: "#/definitions/usersEx"
           application/xml:
             schema:
-              $ref: "#/definitions/users"
+              $ref: "#/definitions/usersEx"
       responses:
         "200":
           description: Create a User model instance
@@ -97,7 +97,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/users"
+              $ref: "#/definitions/usersEx"
         required: true
       responses:
         "200":
@@ -105,7 +105,7 @@ paths:
           content:
             application/json:
               schema:
-                description: User PUT success
+                description: User apdated success
                 x-content-type: application/json
         "400":
           description: Bad request
@@ -134,21 +134,18 @@ paths:
         "404":
           description: id not found
 definitions:
-  users:
-    type: object
-    properties:
-      users:
-        type: object
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-          email:
-            type: string
-          createdAt:
-            type: string
-            format: date-time
-          updatedAt:
-            type: string
-            format: date-time
+    users:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+    usersEx:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string

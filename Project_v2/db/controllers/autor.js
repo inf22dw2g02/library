@@ -45,7 +45,7 @@ router.post("/autor", async (req, res) => {
   
 
 // criar rota get by id
-router.get("/aurtor/:id", async (req, res) => {
+router.get("/autor/:id", async (req, res) => {
     const {id} = req.params;
     const aurtor = await db.Autor.findOne({
         attributes: ['id', 'nome', 'sobrenome', 'nacionalidade'],

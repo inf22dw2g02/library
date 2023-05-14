@@ -29,10 +29,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/autor"
+              $ref: "#/definitions/autorEx"
           application/xml:
             schema:
-              $ref: "#/definitions/autor"
+              $ref: "#/definitions/autorEx"
       responses:
         "200":
           description: Create a Autor model instance
@@ -97,7 +97,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/autor"
+              $ref: "#/definitions/autorEx"
         required: true
       responses:
         "200":
@@ -145,3 +145,13 @@ definitions:
         type: string
       nacionalidade:
         type: string
+  autorEx:
+    type: object
+    properties:
+      nome:
+        type: string
+      sobrenome:
+        type: string
+      nacionalidade:
+        type: string
+
