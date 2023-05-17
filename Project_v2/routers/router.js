@@ -6,6 +6,19 @@ const router = express.Router();
 // Incluir o arquivo users em models
 const { User } = require('../db/models/users');
 
+const users = require('../db/controllers/users');
+const livro = require('../db/controllers/livro');
+const autor = require('../db/controllers/autor');
+const autorLivro = require('../db/controllers/autorLivro');
+const livroAutor = require('../db/controllers/livroAutor');
+
+app.use('/', users);
+app.use('/', livro);
+app.use('/', autor);
+app.use('/', autorLivro);
+app.use('/', livroAutor);
+
+
 
 router.get('/users', async (req, res) => {
     const users = await User.findAll();
@@ -63,16 +76,17 @@ router.delete('/users/:id', async (req, res) => {
     res.status(204).send();
   });  
 
-const auth = function (req, res, next) {
+  const auth = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
     res.redirect("/auth/google");
-}
+};
 
-app.get('/protected', auth, function (req, res) {
+app.use('/protected', auth, function (req, res) {
     res.sendFile(__dirname + "/public/protected.html");
 });
+
 
 app.get("/login", function (req, res) {
     res.sendFile(__dirname + "/public/login.html");
