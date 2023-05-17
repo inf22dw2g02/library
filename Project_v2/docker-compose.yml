@@ -42,6 +42,7 @@ services:
              sleep 10; 
              npx sequelize-cli db:create; 
              npx sequelize-cli db:migrate; 
+             npx sequelize-cli db:seed:all;
              touch /app/.migration_executed; 
              fi && sleep 10 && npm start'
 
