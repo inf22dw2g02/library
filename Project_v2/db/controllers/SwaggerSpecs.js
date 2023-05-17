@@ -16,12 +16,16 @@ const swaggerDefinition = {
         type: "oauth2",
         flows: {
           authorizationCode: {
-            authorizationUrl: "http://localhost:8080/auth/google/",
-            // tokenUrl: "https://oauth2.googleapis.com/token",
+            authorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth",
+            // authorizationUrl: "http://localhost:8080/auth/google/",
+            tokenUrl: "https://oauth2.googleapis.com/token",
+            // redirectUri: "https://oauth2.example.com/auth",
+            redirectUri: "http://localhost:8080/auth/google/callback",
             scopes: {
-              read: 'Read access to protected resources',
-              write: 'Write access to protected resources'
-            }
+              "https://www.googleapis.com/auth/gmail.readonly": "Read-only access to Gmail"
+              // read: 'Read access to protected resources',
+              // write: 'Write access to protected resources'
+            },
           }
         }
       }
