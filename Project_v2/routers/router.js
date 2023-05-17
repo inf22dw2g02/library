@@ -82,8 +82,8 @@ router.delete('/users/:id', async (req, res) => {
         return next();
     }
     // If the user is not authenticated, return a 401 Unauthorized response
+    // res.redirect("/auth/google");
     res.status(401).json({ error: 'Unauthorized' });
-    res.redirect("/auth/google");
 };
 
 app.use('/protected', auth, function (req, res) {
