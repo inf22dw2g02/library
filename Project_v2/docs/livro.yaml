@@ -141,8 +141,8 @@ definitions:
           type: integer
         titulo:
           type: string
-        autor:
-          type: string
+        autorId:
+          type: integer
         anoPublicacao:
           type: integer
     livroEx:

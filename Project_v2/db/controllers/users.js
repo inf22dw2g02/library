@@ -83,11 +83,10 @@ router.put('/users/:id', async (req, res) => {
     const {id} = req.params;
     var  { name, email} = req.body;
     await db.Users.update({name: name, email: email}, {where:{id}})
-    const user = await db.Users.findOne({where: {id}})
     .then(()=>{
-        return res.json({error: 'User has been updated'}, users);
+        return res.json({message: 'User has been updated'});
     }).catch(()=>{
-        return res.status(404).json({error: 'User has not been updated'});
+        return res.status(400).json({error: 'User has not been updated'});
     })
     
 });
