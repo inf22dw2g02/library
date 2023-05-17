@@ -1,4 +1,4 @@
-COMO Iniciar O PROJETO 
+COMO FOI FEITO ESTE PROJECTO
 
 Criar o arquivo packege
 ### npm init
@@ -107,5 +107,10 @@ Para instalar o swagger-jsdoc usamos o comando
 Para instalar o swaggerUI usamos o comando 
 
 ### npm install swagger-ui-express
+ 
+PARRA INICIAR O PROJECTO TEM DE SER POR VIA DE CONTENRIZACAO UTILIZANDO O DOCKER ONDE TEM-SE DE UTILIZAR O SEGUINTE COMANDO:
+
+### Docker compose up -d
+
 
 
