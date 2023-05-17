@@ -13,6 +13,8 @@ app.use(express.json());
 const users = require('./db/controllers/users');
 const livro = require('./db/controllers/livro');
 const autor = require('./db/controllers/autor');
+const autorLivro = require('./db/controllers/autorLivro');
+const livroAutor = require('./db/controllers/livroAutor');
 
 // Incluir o arquivo swagger
 const swaggerSpec = require('./db/controllers/SwaggerSpecs');
@@ -26,6 +28,8 @@ const swaggerUi = require('swagger-ui-express')
 app.use('/', users);
 app.use('/', livro);
 app.use('/', autor);
+app.use('/', autorLivro);
+app.use('/', livroAutor);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 

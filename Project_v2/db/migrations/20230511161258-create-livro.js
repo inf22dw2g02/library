@@ -12,8 +12,8 @@ module.exports = {
       titulo: {
         type: Sequelize.STRING
       },
-      autor: {
-        type: Sequelize.STRING
+      autorId: {
+        type: Sequelize.INTEGER
       },
       anoPublicacao: {
         type: Sequelize.INTEGER

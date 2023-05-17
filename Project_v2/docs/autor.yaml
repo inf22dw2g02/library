@@ -106,7 +106,7 @@ paths:
             application/json:
               schema:
                 description: Autor apdated success
-                x-content-type: application/json
+                $ref: "#/definitions/autor"
         "400":
           description: Bad request
         "404":

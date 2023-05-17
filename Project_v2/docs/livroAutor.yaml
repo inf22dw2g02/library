@@ -1,0 +1,41 @@
+paths:
+  /livrosAutor/{id}:
+    get:
+      tags:
+        - LivrosAutor
+      summary: Retrieve Livros do Autor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve Livros do Autor id 1
+              value: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/livroAutor"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+definitions:
+    livroAutor:
+      type: object
+      properties:
+        id:
+          type: integer
+        titulo:
+          type: string
+        anoPublicacao:
+          type: integer

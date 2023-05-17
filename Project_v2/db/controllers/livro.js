@@ -13,7 +13,7 @@ const { where } = require('sequelize');
 // criar rota get
 router.get("/livro", async (req, res) => {
     const livro = await db.Livro.findAll({
-        attributes: ['id', 'titulo', 'autor', 'anoPublicacao']
+        attributes: ['id', 'titulo', 'autorId', 'anoPublicacao']
     });
 
     if (livro){
@@ -29,13 +29,13 @@ router.get("/livro", async (req, res) => {
 // criar rota post
 router.post("/livro", async (req, res) => {
     try {
-      const { titulo, autor, anoPublicacao } = req.body;
+      const { titulo, autorId, anoPublicacao } = req.body;
       const {dados} = req.body;
       console.log(dados)
 
   
       // Cria um novo usuário no banco de dados
-      const livro = await db.Livro.create({ titulo, autor, anoPublicacao });
+      const livro = await db.Livro.create({ titulo, autorId, anoPublicacao });
   
       // Retorna o novo usuário criado
       return res.json(livro);
@@ -52,7 +52,7 @@ router.post("/livro", async (req, res) => {
 router.get("/livro/:id", async (req, res) => {
     const {id} = req.params;
     const livro = await db.Livro.findOne({
-        attributes: ['id', 'titulo', 'autor', 'anoPublicacao'],
+        attributes: ['id', 'titulo', 'autorId', 'anoPublicacao'],
         where: {id},
     })
 
@@ -66,8 +66,8 @@ router.get("/livro/:id", async (req, res) => {
 // criar a rota put 
 router.put('/livro/:id', async (req, res) => {
     const {id} = req.params;
-    var  { titulo, autor, anoPublicacao } = req.body;
-    await db.Livro.update({titulo: titulo, autor: autor, anoPublicacao: anoPublicacao}, {where:{id}})
+    var  { titulo, autorId, anoPublicacao } = req.body;
+    await db.Livro.update({titulo: titulo, autorId: autorId, anoPublicacao: anoPublicacao}, {where:{id}})
     .then(()=>{
         return res.json({mensagem: 'Dados do livro atualizado'});
     }).catch(()=>{
