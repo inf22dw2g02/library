@@ -11,7 +11,11 @@ services:
     volumes:
       - project_v2DB-mysql-data:/var/lib/mysql
     networks:
-      - project_v2DB-network
+      project_v2DB-network:
+        aliases:
+          - mydbhost
+     
+     
    
       
 
@@ -31,7 +35,9 @@ services:
       GOOGLE_CLIENT_ID: '89846874244-sr5mqqd452sdele5eroh90m8l1d49d6k.apps.googleusercontent.com'
       GOOGLE_CLIENT_SECRET: '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'
     networks:
-      - project_v2DB-network
+      project_v2DB-network:
+        aliases:
+          - mydockerhost
     
     volumes:
       - .:/app
@@ -53,3 +59,7 @@ volumes:
 
 networks:
   project_v2DB-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.1.0/24"
