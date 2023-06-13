@@ -1,36 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
-import  LoginButton from "./components/login";
-import  LogoutButton from "./components/logout";
-import { useEffect } from 'react';
-import { gapi}  from  'gapi-script';
+import { useEffect, useState } from 'react';
+import { gapi } from 'gapi-script';
+import React from 'react';
+import Navbar from './components/Navbar';
+import HomePage from './components/HomePage';
+import SignIn from './components/SignIn';
+import Book from './components/Book';
+import { AutoresPage } from './components/autoresPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import PrivateRoute from './routes/PrivateRoute';
+
 
 const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleusercontent.com';
 
-function App() {
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: ""
-      })
-    };
+        scope: ''
+      });
+    }
 
     gapi.load('client:auth2', start);
-  });
+  }, []);
 
+  const handleLogin = (name) => {
+    setIsAuthenticated(true);
+    setUserName(name);
+  };
 
-  // var accessToken = gapi.auth.getToken().accessToken; ### Para ter o acces token para a api
-
-
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUserName('');
+  };
 
   return (
-    <div className="App">
-      <LoginButton />
-      <LogoutButton />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
+        <Routes>
+          <Route path="/" element={!isAuthenticated ? <SignIn /> : null} />
+          <Route path="/home" element={isAuthenticated ? <HomePage /> : null} />
+          <Route path="/book" element={isAuthenticated ? <Book /> : null} />
+          <Route path="/autores" element={isAuthenticated ? <AutoresPage /> : null} />
+          
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

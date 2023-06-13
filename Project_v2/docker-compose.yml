@@ -52,6 +52,17 @@ services:
              touch /app/.migration_executed; 
              fi && sleep 10 && npm start'
 
+  react-app:
+    build:
+      context: ./react_app/client/
+      dockerfile: dockerfile.react
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - api
+
     
 
 volumes:

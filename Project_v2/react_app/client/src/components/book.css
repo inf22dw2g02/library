@@ -1,0 +1,28 @@
+.book-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .book-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .book-media {
+    /* 16:9 aspect ratio */
+    padding-top: 56.25%;
+  }
+  
+  .book-content {
+    flex-grow: 1;
+  }
+  
+  .book-title {
+    margin-bottom: 8px;
+  }
+  
+  .book-actions {
+    justify-content: space-between;
+  }
+  
