@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: relative;
+    background-color: #f5f5f5;
+  }
+  
+  .title {
+    position: relative;
+    font-size: 34px;
+    font-weight: bold;
+    margin-top: 80px;
+  }
+  
+  .description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+
+  .buttonL {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: 800px;
+  }
+
+  .buttonL:hover {
+    background-color: #0056b3;
+  }
+  
+  .input-field {
+    /* Define your input field styles here */
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    padding-right: 80px;
+    margin-right: 800px;
+    
+  }
+  
+  .create-button {
+    /* Define your create button styles here */
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 800px;
+  }
+  
+  .create-button:hover {
+    background-color: #0056b3;
+    
+
+  }
+
+  .registarL {
+    padding-right: 800px;
+    top: 300px;
+  }
+
+  .textoClique {
+    padding-left: 800px;
+  }
+  
