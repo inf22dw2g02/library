@@ -41,7 +41,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar isAuthenticated={isAuthenticated || SignIn} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
+        {<Navbar isAuthenticated={isAuthenticated || SignIn} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />}
         <Routes>
           <Route path="/" element={!isAuthenticated ? <SignIn /> : null} />
           <Route path="/home" element={isAuthenticated || SignIn? <HomePage /> : null} />
