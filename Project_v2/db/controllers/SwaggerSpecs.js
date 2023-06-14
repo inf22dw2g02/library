@@ -9,7 +9,7 @@ const swaggerDefinition = {
     description: "Rest API",
     contact: { name: "Your name" },
   },
-  servers: [ {url: "http://192.168.1.79:8080"}, {url: "http://localhost:8080"}  ], // here u v to put ur machine ip
+  servers: [ {url: "http://192.168.1.79:8080"}, {url: "http://localhost:8080"}], // here u v to put ur machine ip
   components: {
     securitySchemes: {
       googleAuth: { 
