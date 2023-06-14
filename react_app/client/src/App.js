@@ -41,13 +41,12 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
+        <Navbar isAuthenticated={isAuthenticated || SignIn} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
         <Routes>
           <Route path="/" element={!isAuthenticated ? <SignIn /> : null} />
-          <Route path="/home" element={isAuthenticated ? <HomePage /> : null} />
-          <Route path="/book" element={isAuthenticated ? <Book /> : null} />
-          <Route path="/autores" element={isAuthenticated ? <AutoresPage /> : null} />
-          
+          <Route path="/home" element={isAuthenticated || SignIn? <HomePage /> : null} />
+          <Route path="/book" element={isAuthenticated || SignIn? <Book /> : null} />
+          <Route path="/autores" element={isAuthenticated || SignIn? <AutoresPage /> : null} />
         </Routes>
       </div>
     </Router>
