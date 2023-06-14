@@ -12,12 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {'Copyright Â© '}
       <Link color="inherit" href="https://mui.com/">
         Bruno & Evinilson
       </Link>{' '}
@@ -32,13 +32,15 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email')
+    const password = data.get('password')
+    if (email === 'Ana' && password === '1234') {
+      navigate('/home');
+    }
   };
 
   return (
@@ -89,7 +91,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-            >
+             >
               Sign In
             </Button>
             <Grid container>

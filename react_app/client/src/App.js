@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import PrivateRoute from './routes/PrivateRoute';
 
 
+
 const clientId = '89846874244-4rl59hshpt44k64ontkslptsit9jmilq.apps.googleusercontent.com';
 
 const App = () => {
@@ -41,12 +42,14 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        {SignIn ? <Navbar isAuthenticated={isAuthenticated || !SignIn} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />: <Navbar isAuthenticated={isAuthenticated || !SignIn} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />}
+        <Navbar isAuthenticated={isAuthenticated} onLogin={handleLogin} onLogout={handleLogout} userName={userName} />
         <Routes>
-          <Route path="/" element={!isAuthenticated ? !<SignIn /> : null} />
-          <Route path="/home" element={isAuthenticated || SignIn? <HomePage /> : null} />
-          <Route path="/book" element={isAuthenticated || SignIn? <Book /> : null} />
-          <Route path="/autores" element={isAuthenticated || SignIn? <AutoresPage /> : null} />
+          {/* <Route path="/" element={SignIn ?  <SignIn /> : null} /> */}
+          <Route path="/" element={!isAuthenticated ?  <SignIn /> : null} />
+          <Route path="/home" element={isAuthenticated || SignIn ? <HomePage /> : null} />
+          <Route path="/book" element={isAuthenticated ? <Book /> : null} />
+          <Route path="/autores" element={isAuthenticated ? <AutoresPage /> : null} />
+          
         </Routes>
       </div>
     </Router>
