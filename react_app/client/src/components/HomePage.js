@@ -10,13 +10,55 @@ const HomePage = () => {
     anoPublicacao: '',
   });
 
+ 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setBookData({ ...bookData, [name]: value });
   };
 
   const createBook = () => {
-    // ...
+    if (bookData.titulo === '' || bookData.autorId === '' || bookData.anoPublicacao === '') {
+      alert('Please fill in all the fields');
+      return;
+}
+
+    fetch("http://localhost:8080/livro", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Book created successfully:', data);
+        // Perform any additional actions after book creation
+
+        // create an alert
+        alert('Book created successfully');
+
+        //  Clear the form inputs
+      setBookData({
+        titulo: '',
+        autorId: '',
+        anoPublicacao: '',
+      });
+      })
+      .catch(error => {
+        console.error('Error creating book:', error);
+        // Handle error scenarios
+
+        // Example: Show an error message
+      alert('Error creating book. Please try again.');
+
+      setBookData({
+        titulo: '',
+        autorId: '',
+        anoPublicacao: '',
+      });
+
+      });
   };
 
   return (
