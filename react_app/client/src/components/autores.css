@@ -24,3 +24,35 @@
     background-color: #f5f5f5;
   }
   
+  .autorButton {
+    display: inline-block;
+    padding: 5px 20px ;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: 3px;
+  }
+  .autorButton:hover {
+    background-color: #0056b3;
+  }
+
+
+  .create-button-autor {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .create-button-autor:hover {
+    background-color: #0056b3;
+  }
