@@ -11,9 +11,8 @@ services:
     volumes:
       - project_v2DB-mysql-data:/var/lib/mysql
     networks:
-      project_v2DB-network:
-        aliases:
-          - mydbhost
+      - project_v2DB-network
+        
          
 
   api:
@@ -32,9 +31,8 @@ services:
       GOOGLE_CLIENT_ID: '89846874244-sr5mqqd452sdele5eroh90m8l1d49d6k.apps.googleusercontent.com'
       GOOGLE_CLIENT_SECRET: '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'
     networks:
-      project_v2DB-network:
-        aliases:
-          - mydockerhost
+      - project_v2DB-network
+        
     
     volumes:
       - .:/app
@@ -56,9 +54,8 @@ services:
     ports:
       - 3000:3000
     networks:
-      project_v2DB-network:
-        aliases:
-          - myreacthost
+      - project_v2DB-network
+       
     depends_on:
       - api
     

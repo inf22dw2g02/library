@@ -47,7 +47,7 @@ const App = () => {
           {/* <Route path="/" element={SignIn ?  <SignIn /> : null} /> */}
           <Route path="/" element={!isAuthenticated ?  <SignIn /> : null} />
           <Route path="/home" element={isAuthenticated || SignIn ? <HomePage /> : null} />
-          <Route path="/book" element={isAuthenticated ? <Book /> : null} />
+          <Route path="/book" element={isAuthenticated || SignIn ?  <Book /> : null} />
           <Route path="/autores" element={isAuthenticated ? <AutoresPage /> : null} />
           
         </Routes>
