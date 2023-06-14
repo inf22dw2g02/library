@@ -183,8 +183,8 @@ const AutoresPage = () => {
                   <td>{autor.sobrenome}</td>
                   <td>{autor.nacionalidade}</td>
                   <td>
-                    <button onClick={() => handleEditClick(autor.id)}>Edit</button>
-                    <button onClick={() => deleteAutor(autor.id)}>Delete</button>
+                    <button onClick={() => handleEditClick(autor.id)} className='autorButton'>Edit</button>
+                    <button onClick={() => deleteAutor(autor.id)} className='autorButton'>Delete</button>
                   </td>
                 </tr>
               ))}
