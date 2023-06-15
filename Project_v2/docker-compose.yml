@@ -11,10 +11,9 @@ services:
     volumes:
       - project_v2DB-mysql-data:/var/lib/mysql
     networks:
-      - project_v2DB-network
+      - default
         
-         
-
+      
   api:
     build:
       context: .
@@ -31,9 +30,7 @@ services:
       GOOGLE_CLIENT_ID: '89846874244-sr5mqqd452sdele5eroh90m8l1d49d6k.apps.googleusercontent.com'
       GOOGLE_CLIENT_SECRET: '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'
     networks:
-      - project_v2DB-network
-        
-    
+      - default
     volumes:
       - .:/app
 
@@ -52,20 +49,32 @@ services:
       context: ../react_app/client/
       dockerfile: dockerfile.react
     ports:
-      - 3000:3000
+      - '3000:3000'
     networks:
-      - project_v2DB-network
-       
+      - default
+        
     depends_on:
       - api
     
+
+  proxy:
+    image: nginx
+    networks:
+      - outside
+      - default
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+
+
 
 volumes:
   project_v2DB-mysql-data:
 
 networks:
-  project_v2DB-network:
-    driver: "bridge"
-    ipam:
-      driver: default
-      
+  outside:
+    external: true
+

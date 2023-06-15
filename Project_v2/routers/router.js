@@ -120,8 +120,11 @@ app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/erro' }),
+    passport.authenticate('google', {  scope: ['profile', 'email']  }),
     function (req, res) {
+
+        // const accessToken = req.user.accessToken;
+        // const refreshToken = req.user.refreshToken;
         // Successful authentication, redirect home.
         res.redirect('/logado');
     });

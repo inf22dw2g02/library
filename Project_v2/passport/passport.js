@@ -12,11 +12,15 @@ passport.serializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:8080/auth/google/callback"
+    callbackURL: "http://localhost:8080/auth/google/callback",
+    callbackURL: "http://localhost:80/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
   
-      return done(null, profile);
-    
+    // Salva o access token e o refresh token no perfil do usuário
+    profile.accessToken = accessToken;
+    profile.refreshToken = refreshToken;
+
+    return done(null, profile);
   }
 ));
